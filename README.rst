@@ -6,8 +6,8 @@ PypeTree
    :align: center
 
 **PypeTree** is a Python_ and VTK_-based tool with an innovative UI
-  for the reconstruction and modeling of botanical trees from point
-  cloud (i.e. 3d points) data.
+for the reconstruction and modeling of botanical trees from point
+cloud (i.e. 3d points) data.
 
 .. _Python: http://www.python.org
 .. _VTK: http://www.vtk.org
