@@ -2,8 +2,10 @@
 PypeTree
 ========
 
+bla
+
 .. image:: https://github.com/cjauvin/pylidar/raw/gh-pages/_images/pypetree_orme.png
-   :align: right
+   :align: center
 
 **PypeTree** is a Python_ and VTK_-based tool with an innovative UI
 for the reconstruction and modeling of botanical trees from point
