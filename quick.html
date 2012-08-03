@@ -1,0 +1,208 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Quick Tutorial &mdash; PypeTree 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="PypeTree 1.0 documentation" href="index.html" />
+    <link rel="next" title="Tree Reconstruction" href="reconstruction.html" />
+    <link rel="prev" title="Installation" href="install.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="reconstruction.html" title="Tree Reconstruction"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="install.html" title="Installation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">PypeTree 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="quick-tutorial">
+<h1>Quick Tutorial<a class="headerlink" href="#quick-tutorial" title="Permalink to this headline">¶</a></h1>
+<p>This is a quick overview of the PypeTree UI and basic features.</p>
+<div class="section" id="navigation">
+<h2>Navigation<a class="headerlink" href="#navigation" title="Permalink to this headline">¶</a></h2>
+<p>You can control the camera using the mouse:</p>
+<ul class="simple">
+<li>Left button to rotate</li>
+<li><tt class="docutils literal"><span class="pre">CTRL</span></tt> + left button to rotate around the <em>x</em> axis (i.e. the one
+pointing out of the screen, toward you)</li>
+<li><tt class="docutils literal"><span class="pre">SHIFT</span></tt> + left button (or middle-button) to pan</li>
+<li>Right button (or wheel) to zoom</li>
+</ul>
+<p>Two other useful camera features use the keyboard:</p>
+<ul class="simple">
+<li>Press <tt class="docutils literal"><span class="pre">r</span></tt> to reset the camera to its initial extent</li>
+<li>Press <tt class="docutils literal"><span class="pre">f</span></tt> on a point or object, to center the camera on it (so
+that it becomes the center of rotation)</li>
+</ul>
+</div>
+<div class="section" id="point-clouds">
+<h2>Point Clouds<a class="headerlink" href="#point-clouds" title="Permalink to this headline">¶</a></h2>
+<p>A point cloud is a set of 3d points:</p>
+<ul class="simple">
+<li>You can load an existing one with <tt class="docutils literal"><span class="pre">File-&gt;Open</span></tt> (point cloud files
+must have an <tt class="docutils literal"><span class="pre">.asc</span></tt> extension).</li>
+<li>A new point cloud can also be created by sampling an artificial
+L-System model with <tt class="docutils literal"><span class="pre">Model-&gt;L-System</span></tt>.</li>
+<li>Once a point cloud is on screen, it can be downsampled with <tt class="docutils literal"><span class="pre">Point</span>
+<span class="pre">Cloud-&gt;Aggregate</span></tt>, or have its branched clipped at a certain
+geodesic distance with <tt class="docutils literal"><span class="pre">Point</span> <span class="pre">Cloud-&gt;Geodesic</span> <span class="pre">Clipping</span></tt>.</li>
+<li>If an articulation sphere is highlighting some of its points
+(<tt class="docutils literal"><span class="pre">View-&gt;Point</span> <span class="pre">Cloud-&gt;Shere</span> <span class="pre">Selection</span></tt>), pressing <tt class="docutils literal"><span class="pre">D</span></tt> while the
+sphere is selected will delete them, thus pruning the point cloud.</li>
+<li>At any time, the current point cloud can be saved with <tt class="docutils literal"><span class="pre">File-&gt;Save</span>
+<span class="pre">Point</span> <span class="pre">Cloud</span></tt>.</li>
+</ul>
+</div>
+<div class="section" id="models">
+<h2>Models<a class="headerlink" href="#models" title="Permalink to this headline">¶</a></h2>
+<p>A model is a set of truncated cones linked together to form a <em>tree</em>,
+in both the mathematical and botanical senses of the word (i.e. it&#8217;s
+not possible for a &#8220;child&#8221; articulation point to have multiple
+&#8220;parents&#8221;, or in other words, for a branch to be linked to many
+trunks). There are three ways a model can be generated:</p>
+<ul class="simple">
+<li>By loading an existing one with <tt class="docutils literal"><span class="pre">File-&gt;Open</span></tt> (model files have a
+<tt class="docutils literal"><span class="pre">.pkl</span></tt> extension)</li>
+<li>With the <em>Modified Verroust &amp; Lazarus</em> <a class="reference internal" href="reconstruction.html"><em>reconstruction</em></a> algorithm
+(<tt class="docutils literal"><span class="pre">Reconstruction-&gt;Modified</span> <span class="pre">Verroust</span> <span class="pre">&amp;</span> <span class="pre">Lazarus</span></tt>)</li>
+<li>As a temporary structure in step 1 of the L-System modeling process</li>
+</ul>
+<p>The interesting thing about models is the way you can interact with
+them. The interaction mechanism works with <em>articulation spheres</em>. To
+create one, double-click near a model articulation point (i.e. at the
+junction between two segments), it will appear there.</p>
+<p>To help with spatial navigation, these spheres perform a point
+selection (if a point cloud is present). To modify the model structure
+with a sphere, it must be first selected, by pressing <tt class="docutils literal"><span class="pre">s</span></tt> while the
+cursor is over it (it then becomes blue). Once a sphere is selected,
+you can:</p>
+<ul class="simple">
+<li>Modify the position of the corresponding model articulation (by
+dragging it) or its radius (while holding the right button):</li>
+</ul>
+<img alt="_images/sphere_before.png" src="_images/sphere_before.png" />
+<img alt="_images/sphere_after.png" src="_images/sphere_after.png" />
+<ul class="simple">
+<li>Delete it, by pressing <tt class="docutils literal"><span class="pre">d</span></tt> (this won&#8217;t affect the model anyhow)</li>
+<li>Cut the branch above it, by pressing <tt class="docutils literal"><span class="pre">x</span></tt>:</li>
+</ul>
+<img alt="_images/cut_x_before.png" src="_images/cut_x_before.png" />
+<img alt="_images/cut_x_after.png" src="_images/cut_x_after.png" />
+<ul class="simple">
+<li>Cut the whole branch to which it belongs, down to the nearest
+branching point, by pressing <tt class="docutils literal"><span class="pre">X</span></tt>:</li>
+</ul>
+<img alt="_images/cut_X_before.png" src="_images/cut_X_before.png" />
+<img alt="_images/cut_X_after.png" src="_images/cut_X_after.png" />
+<p>Finally, when a point cloud is present, it&#8217;s possible to double-click
+on it to create a &#8220;roaming&#8221; sphere (i.e. not attached to any
+model). If it is selected, you can then connect this sphere to a model
+by pressing <tt class="docutils literal"><span class="pre">c</span></tt> while the cursor is over the desired link point:</p>
+<img alt="_images/connect_before.png" src="_images/connect_before.png" />
+<img alt="_images/connect_after.png" src="_images/connect_after.png" />
+<p>Of course since this is a tree model, only one such connection is
+allowed for a given sphere.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Quick Tutorial</a><ul>
+<li><a class="reference internal" href="#navigation">Navigation</a></li>
+<li><a class="reference internal" href="#point-clouds">Point Clouds</a></li>
+<li><a class="reference internal" href="#models">Models</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="install.html"
+                        title="previous chapter">Installation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="reconstruction.html"
+                        title="next chapter">Tree Reconstruction</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/quick.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="reconstruction.html" title="Tree Reconstruction"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="install.html" title="Installation"
+             >previous</a> |</li>
+        <li><a href="index.html">PypeTree 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Christian Jauvin.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

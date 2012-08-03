@@ -1,0 +1,139 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Measurement Markers &mdash; PypeTree 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="PypeTree 1.0 documentation" href="index.html" />
+    <link rel="prev" title="L-system" href="lsystem.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="lsystem.html" title="L-system"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">PypeTree 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="measurement-markers">
+<h1>Measurement Markers<a class="headerlink" href="#measurement-markers" title="Permalink to this headline">¶</a></h1>
+<p>This is a tool to generate measurement markers (i.e. spheres with a
+position and radius) at evenly spaced interpolated intervals on a
+model subsegment (e.g. a branch).</p>
+<p>When a model is available on screen, clicking <tt class="docutils literal"><span class="pre">Model-&gt;Add</span> <span class="pre">Measurement</span>
+<span class="pre">Markers</span></tt> does three things:</p>
+<ul class="simple">
+<li>Open an interaction dialog to specify the desired number <tt class="docutils literal"><span class="pre">n</span></tt> of
+markers</li>
+<li>Spawn two user-defined green marker spheres at the ends of an
+arbitrary subsegment of the model</li>
+<li>Set model visualization to wireframe (i.e. disable volume) to allow
+an easier interaction with the marker spheres</li>
+</ul>
+<img alt="_images/markers1.png" src="_images/markers1.png" />
+<p>The two green markers can be freely moved (by first selecting them
+with <tt class="docutils literal"><span class="pre">s</span></tt> while the cursor is over) to define a subsegment on which
+the remaining <tt class="docutils literal"><span class="pre">n-2</span></tt> markers will be placed (at evenly spaced
+intervals, using interpolation). Whenever a green marker is moved, it
+snaps on the model as its new position is projected on the nearest
+point of the nearest linear segment:</p>
+<img alt="_images/projection.png" src="_images/projection.png" />
+<p>When the green markers are at the desired positions, you can launch
+the interpolation process to generate the remaining markers (as many
+times as needed, with different <tt class="docutils literal"><span class="pre">n</span></tt> values):</p>
+<img alt="_images/markers2.png" src="_images/markers2.png" />
+<img alt="_images/markers3.png" src="_images/markers3.png" />
+<p>The process will generate an error if the two green markers do not
+form a valid subsegment, i.e. if one is not found in the other&#8217;s
+downward path toward the root.</p>
+<p>When satisfied with the results, press the dialog&#8217;s <tt class="docutils literal"><span class="pre">Done</span></tt> button to
+&#8220;commit&#8221; the markers (<tt class="docutils literal"><span class="pre">Cancel</span></tt> will remove all markers from the
+current run). You can further modify the position and size of the
+markers, using the usual mouse interaction for spheres. You can then
+save their 3d position and radius in a CSV file, using <tt class="docutils literal"><span class="pre">File-&gt;Save</span>
+<span class="pre">Markers</span></tt>. You can also reload them at a later time using
+<tt class="docutils literal"><span class="pre">File-&gt;Open</span></tt>. Finally, <tt class="docutils literal"><span class="pre">Model-&gt;Clear</span> <span class="pre">Measurement</span> <span class="pre">Markers</span></tt> will
+remove all markers present on screen.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="lsystem.html"
+                        title="previous chapter">L-system</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/markers.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="lsystem.html" title="L-system"
+             >previous</a> |</li>
+        <li><a href="index.html">PypeTree 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Christian Jauvin.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

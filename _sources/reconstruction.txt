@@ -1,0 +1,45 @@
+Tree Reconstruction
+===================
+
+This document describes the PypeTree implementation of the Modified
+Verroust & Lazarus algorithm that can be applied to a botanical tree
+point cloud to reconstruct it.
+
+Connectivity
+------------
+
+Both the number of neighbors (``k``) and the search radius (``r``) can
+be specifed, as they are not mutually exclusive or conflicting.
+
+Level Sets
+----------
+
+The *y* (or upward dimension) is the column in the input dataset
+corresponding to the height of the tree (0, 1, or 2). This is
+important because the geodesic space is defined in the elongated
+dimension of the tree, which is usually mostly directed in the upward
+direction. Although PypeTree tries to guess it for you, its heuristic
+(i.e. simply looking for the dimension with the largest span) is not
+perfect, and you should be careful that the value is the right one.
+
+The search for the *N*-connected components of a given level set is
+the way branch cut segmentation is performed. Since having too many
+very small components adds unnecessary noise to the model, it's
+possible to filter those whose size is below a threshold, by lumping
+them to one of their neighboring level sets. However, you have to be
+careful with this, because the underlying computation can be quite
+expensive with degenerate cases where many filtered components are
+shuffled around. For a value of 0, this filtering computation simply
+isn't triggered, so it's the most efficient option, at the expense of
+producing noisier results.
+
+Reconstruction
+--------------
+
+Smoothing
+---------
+
+
+
+
+

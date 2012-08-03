@@ -1,0 +1,157 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tree Reconstruction &mdash; PypeTree 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="PypeTree 1.0 documentation" href="index.html" />
+    <link rel="next" title="L-system" href="lsystem.html" />
+    <link rel="prev" title="Quick Tutorial" href="quick.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="lsystem.html" title="L-system"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="quick.html" title="Quick Tutorial"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">PypeTree 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tree-reconstruction">
+<h1>Tree Reconstruction<a class="headerlink" href="#tree-reconstruction" title="Permalink to this headline">¶</a></h1>
+<p>This document describes the PypeTree implementation of the Modified
+Verroust &amp; Lazarus algorithm that can be applied to a botanical tree
+point cloud to reconstruct it.</p>
+<div class="section" id="connectivity">
+<h2>Connectivity<a class="headerlink" href="#connectivity" title="Permalink to this headline">¶</a></h2>
+<p>Both the number of neighbors (<tt class="docutils literal"><span class="pre">k</span></tt>) and the search radius (<tt class="docutils literal"><span class="pre">r</span></tt>) can
+be specifed, as they are not mutually exclusive or conflicting.</p>
+</div>
+<div class="section" id="level-sets">
+<h2>Level Sets<a class="headerlink" href="#level-sets" title="Permalink to this headline">¶</a></h2>
+<p>The <em>y</em> (or upward dimension) is the column in the input dataset
+corresponding to the height of the tree (0, 1, or 2). This is
+important because the geodesic space is defined in the elongated
+dimension of the tree, which is usually mostly directed in the upward
+direction. Although PypeTree tries to guess it for you, its heuristic
+(i.e. simply looking for the dimension with the largest span) is not
+perfect, and you should be careful that the value is the right one.</p>
+<p>The search for the <em>N</em>-connected components of a given level set is
+the way branch cut segmentation is performed. Since having too many
+very small components adds unnecessary noise to the model, it&#8217;s
+possible to filter those whose size is below a threshold, by lumping
+them to one of their neighboring level sets. However, you have to be
+careful with this, because the underlying computation can be quite
+expensive with degenerate cases where many filtered components are
+shuffled around. For a value of 0, this filtering computation simply
+isn&#8217;t triggered, so it&#8217;s the most efficient option, at the expense of
+producing noisier results.</p>
+</div>
+<div class="section" id="reconstruction">
+<h2>Reconstruction<a class="headerlink" href="#reconstruction" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="smoothing">
+<h2>Smoothing<a class="headerlink" href="#smoothing" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tree Reconstruction</a><ul>
+<li><a class="reference internal" href="#connectivity">Connectivity</a></li>
+<li><a class="reference internal" href="#level-sets">Level Sets</a></li>
+<li><a class="reference internal" href="#reconstruction">Reconstruction</a></li>
+<li><a class="reference internal" href="#smoothing">Smoothing</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="quick.html"
+                        title="previous chapter">Quick Tutorial</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="lsystem.html"
+                        title="next chapter">L-system</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/reconstruction.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="lsystem.html" title="L-system"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="quick.html" title="Quick Tutorial"
+             >previous</a> |</li>
+        <li><a href="index.html">PypeTree 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Christian Jauvin.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
