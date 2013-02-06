@@ -9,10 +9,10 @@ Welcome to PypeTree's documentation!
 **PypeTree** is a Python_ and VTK_-based tool with an innovative UI
 for the reconstruction and modeling of botanical trees from point
 cloud data (e.g. acquired from T-LiDAR devices). From a set of
-scattered 3d points, it can produce a set of truncated cones fitting
-them in the most likely way. At any moment during the process, the
-user can intervene by manipulating the model primitives to perform
-some adjustments (to create, delete, resize or move a branch, for
+scattered 3d points, it can produce a set of truncated cones fitted in
+the most likely way. At any moment during the process, the user can
+intervene by manipulating the model primitives to perform some
+adjustments (to create, delete, resize or move a branch, for
 instance).
 
 The development of PypeTree was funded by a FQRNT_ and NSERC_ grant
