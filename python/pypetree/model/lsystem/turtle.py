@@ -1,5 +1,6 @@
 from numpy import *
 
+
 class Turtle:
 
     def __init__(self):

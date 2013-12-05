@@ -4,13 +4,17 @@ from __future__ import division
 import visual as vs
 from numpy import *
 
+
 scene_range_divider = 1.5 # 1.75
+
 
 def adjust_view_angle():
     vs.scene.forward = vs.scene.forward.rotate(axis=(0,1,0), angle=math.radians(45))
 
+    
 def p2vs(p):
     return p[[0,2,1]]
+
 
 def vs_loop():
 

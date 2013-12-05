@@ -4,13 +4,16 @@ from turtle import *
 import random as std_random
 import numpy.random as np_random
 
+
 USE_VPYTHON = False
+
 
 # hashable dict
 class hdict(dict):
     def __hash__(self):
         return hash(tuple(sorted(self.items())))
 
+    
 class LSystemTree:
 
     # rules: {'X':'...'}
@@ -136,6 +139,7 @@ class LSystemTree:
             points.add((0,-0.01,0))
         self.P = vstack(points)
 
+        
 if __name__ == '__main__':
 
     from vpython_conf import *
