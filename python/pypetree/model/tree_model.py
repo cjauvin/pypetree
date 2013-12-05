@@ -2,6 +2,7 @@ from copy import deepcopy
 from pypetree.utils.hashable_numpy_array import *
 from pypetree.model.point_cloud import *
 
+
 class TreeNode:
 
     def __init__(self, id, pos, points=None, level=None, parent=None,
@@ -24,6 +25,7 @@ class TreeNode:
     def is_root_node(self):
         return self.parent is None
 
+    
 class TreeModel(dict):
 
     def __init__(self):

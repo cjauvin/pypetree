@@ -2,6 +2,7 @@ from pypetree.model.lsystem.lsystem import *
 from pypetree.ui.wizards.wizard import *
 from pypetree.ui.world import *
 
+
 class LSystemWizard(Wizard):
 
     def on_finish(self, e):
@@ -28,6 +29,7 @@ class LSystemWizard(Wizard):
         self.curr_page.Hide()
         self.Hide()
 
+        
 class LSystemStructureWizardPage(WizardPage):
 
     def __init__(self, wiz):
@@ -113,10 +115,12 @@ class LSystemStructureWizardPage(WizardPage):
         self.SetSizerAndFit(self.sizer)
 
     def on_run(self, e):
-        wx.BeginBusyCursor()
-        wx.SafeYield()
+        if sys.platform == 'win32':
+            self.SetCursor(wx.StockCursor(wx.CURSOR_WAIT))
+        else:
+            wx.BeginBusyCursor()
+        wx.Yield()
         self.status_bar.SetStatusText('')
-
         sls = self.seglen_scaling_tf.GetValue().split()
         srs = self.segrad_scaling_tf.GetValue().split()
         self.wiz.model = LSystemTree(axiom=self.axiom_tf.GetValue(),
@@ -134,7 +138,10 @@ class LSystemStructureWizardPage(WizardPage):
                         seed=self.seed_tf.GetValue().strip())
         self.scene.add_polytube_model(self.wiz.model.K, 'lsys')
         self.scene.frame.ren.ResetCamera()
-        wx.EndBusyCursor()
+        if sys.platform == 'win32':
+            self.SetCursor(wx.StockCursor(wx.CURSOR_ARROW))
+        else:
+            wx.EndBusyCursor()
         dims = self.wiz.model.K.get_dimensions()
         st = '%d tips, %d levels (dims: %0.2f x %0.2f x %0.2f, surf: %0.2f)' % \
              (self.wiz.model.K.get_number_of_tips(),
@@ -155,6 +162,7 @@ class LSystemStructureWizardPage(WizardPage):
         self.scene.set_polytube_model_visibility('lsys', False)
         self.Hide()
 
+        
 class LSystemSamplingWizardPage(WizardPage):
 
     def __init__(self, wiz):
@@ -190,8 +198,11 @@ class LSystemSamplingWizardPage(WizardPage):
         self.SetSizerAndFit(self.sizer)
 
     def on_run(self, e):
-        wx.BeginBusyCursor()
-        wx.SafeYield()
+        if sys.platform == 'win32':
+            self.SetCursor(wx.StockCursor(wx.CURSOR_WAIT))
+        else:
+            wx.BeginBusyCursor()
+        wx.Yield()
         self.status_bar.SetStatusText('Sampling L-System model..')
         self.scene.set_polytube_model_visibility('lsys',
                                               self.show_model_cb.GetValue())
@@ -200,7 +211,10 @@ class LSystemSamplingWizardPage(WizardPage):
                               add_source_point=True,
                               seed=self.seed_tf.GetValue().strip())
         self.scene.add_point_cloud(self.wiz.model.P, 'lsys', 'limegreen')
-        wx.EndBusyCursor()
+        if sys.platform == 'win32':
+            self.SetCursor(wx.StockCursor(wx.CURSOR_ARROW))
+        else:
+            wx.EndBusyCursor()
         self.status_bar.SetStatusText('%s points' % len(self.wiz.model.P))
         self.wiz.nav_pnl.next_btn.Enable(True)
         self.is_dirty = False

@@ -10,6 +10,7 @@ from pypetree.model.tree_model import *
 from pypetree.model.point_cloud import dist
 from pypetree.utils import *
 
+
 class ModifiedVerroustLazarusReconstruction:
 
     def __init__(self, P):

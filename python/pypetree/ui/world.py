@@ -5,8 +5,10 @@ from collections import defaultdict
 from pypetree.model.point_cloud import *
 from pypetree.model.tree_model import *
 
+
 INIT_SPHERE_RADIUS = 0.05
 ART_SPHERE_SIZE_RATIO = 1.25
+
 
 # container for both the point cloud and the model
 class Scene:
@@ -303,6 +305,7 @@ class Scene:
         # else:
         #     raise Exception('unknown file type (%s)' % ext)
 
+        
 class PointCloud:
 
     def __init__(self, P, frame, name, base_color='red',
@@ -358,6 +361,7 @@ class PointCloud:
         self.actor.SetVisibility(b)
         self.frame.ren_win.Render()
 
+        
 class ArticulationSphere:
 
     last_radius_update = INIT_SPHERE_RADIUS
@@ -529,6 +533,7 @@ class ArticulationSphere:
     #     self.update()
     #     self.frame.ren_win.Render()
 
+    
 class PolytubeModel:
 
     # additional_sphere_callbacks: list of (callback_name, callback)'s
@@ -770,6 +775,7 @@ class PolytubeModel:
         del self.mm_user_spheres
         del self.mm_spheres
 
+        
 class VoxelModel:
 
     # def __init__(self, scene, V, opacity=1, color='gray'):

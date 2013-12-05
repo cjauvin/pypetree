@@ -3,6 +3,7 @@ from pypetree.ui.wizards.wizard import *
 from pypetree.model.point_cloud import *
 from pypetree.model.reconstruction.modified_vl_reconstruction import *
 
+
 class MVLWizard(Wizard):
 
     def run(self):
@@ -42,9 +43,11 @@ def set_nn_connected_components_color_scheme(self, graph_list):
         color_idx %= len(colors)
     self.scene.set_point_cloud_color_scheme(color_scheme)
 
+    
 WizardPage.set_nn_connected_components_color_scheme = \
   set_nn_connected_components_color_scheme
 
+  
 class MVLGeodesicConnectivityWizardPage(WizardPage):
 
     def __init__(self, wiz):
@@ -108,6 +111,7 @@ class MVLGeodesicConnectivityWizardPage(WizardPage):
          self.scene.get_active_point_cloud().reset_colors()
          self.Hide()
 
+         
 class MVLLevelSetWizardPage(WizardPage):
 
     def __init__(self, wiz):
@@ -164,8 +168,11 @@ class MVLLevelSetWizardPage(WizardPage):
         self.scene.set_point_cloud_color_scheme(ls_color_scheme)
 
     def on_run(self, e):
-        wx.BeginBusyCursor()
-        wx.SafeYield()
+        if sys.platform == 'win32':
+            self.wiz.nav_pnl.SetCursor(wx.StockCursor(wx.CURSOR_WAIT))
+        else:
+            wx.BeginBusyCursor()
+        wx.Yield()
         start = time.time()
         self.status_bar.SetStatusText('Computing shortest paths..')
         self.wiz.model.compute_shortest_paths(ydim=int(self.ydim_tf.GetValue()))
@@ -175,7 +182,10 @@ class MVLLevelSetWizardPage(WizardPage):
             min_connected_component_size=int(self.mccs_tf.GetValue()))
         self.set_level_set_color_scheme()
         #self.scene.setPointCloudColorScheme([('yellow', self.wiz.model.lsp)])
-        wx.EndBusyCursor()
+        if sys.platform == 'win32':
+            self.wiz.nav_pnl.SetCursor(wx.StockCursor(wx.CURSOR_ARROW))
+        else:
+            wx.EndBusyCursor()
         st = 'Found %d level sets (in %d seconds)' % \
                 (n_ls, time.time() - start)
         self.status_bar.SetStatusText(st)
@@ -192,6 +202,7 @@ class MVLLevelSetWizardPage(WizardPage):
         self.scene.unset_point_cloud_color_scheme()
         self.Hide()
 
+        
 class MVLReconstructionWizardPage(WizardPage):
 
     def __init__(self, wiz):
@@ -230,8 +241,11 @@ class MVLReconstructionWizardPage(WizardPage):
         self.SetSizerAndFit(self.sizer)
 
     def on_run(self, e):
-        wx.BeginBusyCursor()
-        wx.SafeYield()
+        if sys.platform == 'win32':
+            self.wiz.nav_pnl.SetCursor(wx.StockCursor(wx.CURSOR_WAIT))
+        else:
+            wx.BeginBusyCursor()
+        wx.Yield()
         self.status_bar.SetStatusText('Segmenting level sets..')
         self.wiz.model.segmentation()
 
@@ -267,7 +281,10 @@ class MVLReconstructionWizardPage(WizardPage):
             additional_sphere_callbacks=[('moved', set_next_dirty),
                                          ('cutAtAttachedNode', set_next_dirty),
                                          ('cut_aboveAttachedNode', set_next_dirty)])
-        wx.EndBusyCursor()
+        if sys.platform == 'win32':
+            self.wiz.nav_pnl.SetCursor(wx.StockCursor(wx.CURSOR_ARROW))
+        else:
+            wx.EndBusyCursor()
         dims = self.wiz.model.K.get_dimensions()
         st = 'Found %s tips (dims: %0.2f x %0.2f x %0.2f, surf: %0.2f)' % \
              (self.wiz.model.K.get_number_of_tips(), dims[0], dims[1], dims[2],
@@ -287,6 +304,7 @@ class MVLReconstructionWizardPage(WizardPage):
         self.scene.set_polytube_model_visibility('K', False)
         self.Hide()
 
+        
 class MVLSmoothingWizardPage(WizardPage):
 
     def __init__(self, wiz):
@@ -313,14 +331,20 @@ class MVLSmoothingWizardPage(WizardPage):
         self.SetSizerAndFit(self.sizer)
 
     def on_run(self, e):
-        wx.BeginBusyCursor()
-        wx.SafeYield()
+        if sys.platform == 'win32':
+            self.wiz.nav_pnl.SetCursor(wx.StockCursor(wx.CURSOR_WAIT))
+        else:
+            wx.BeginBusyCursor()
+        wx.Yield()
         self.status_bar.SetStatusText('Smoothing..')
         L = self.wiz.model.K.smooth(w=int(self.w_tf.GetValue()))
         self.scene.add_polytube_model(L, 'L',
                             color_tips_in_yellow=self.show_tips_cb.GetValue(),
                             show_volume=self.show_vol_cb.GetValue())
-        wx.EndBusyCursor()
+        if sys.platform == 'win32':
+            self.wiz.nav_pnl.SetCursor(wx.StockCursor(wx.CURSOR_ARROW))
+        else:
+            wx.EndBusyCursor()
         self.status_bar.SetStatusText('Found %d tips' % L.get_number_of_tips())
         self.wiz.nav_pnl.next_btn.Enable(True)
         self.is_dirty = False

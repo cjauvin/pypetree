@@ -1,6 +1,7 @@
 import wx
 from pypetree.model.point_cloud import *
 
+
 class PointCloudOpacityDialog(wx.Dialog):
 
     def __init__(self, parent):
@@ -22,11 +23,12 @@ class PointCloudOpacityDialog(wx.Dialog):
         sizer.Add(self.slider, 0, wx.ALIGN_CENTER_VERTICAL, 10)
         self.SetSizerAndFit(sizer)
 
-class PointCloudAggregationDialog(wx.Dialog):
+        
+class PointCloudDownsamplingDialog(wx.Dialog):
 
     def __init__(self, parent):
 
-        wx.Dialog.__init__(self, parent, wx.ID_ANY, 'Point Cloud Aggregation')
+        wx.Dialog.__init__(self, parent, wx.ID_ANY, 'Point Cloud Downsampling')
 
         self.parent = parent
         self.scene = self.parent.scene
@@ -75,22 +77,28 @@ class PointCloudAggregationDialog(wx.Dialog):
         if not self.scene.get_active_point_cloud():
             self.status_bar.SetStatusText('A point cloud is required for this!')
             return
-        wx.BeginBusyCursor()
-        wx.SafeYield()
+        if sys.platform == 'win32':
+            self.SetCursor(wx.StockCursor(wx.CURSOR_WAIT))
+        else:
+            wx.BeginBusyCursor()
+        wx.Yield()
         self.parent.gauge_popup.Show()
         qpc = QuantizedPointCloud(self.scene.get_active_point_cloud().P)
-        self.status_bar.SetStatusText('Aggregating point cloud..')
+        self.status_bar.SetStatusText('Downsampling point cloud..')
         mode = 'bin_centroids' if self.centroid_rb.GetValue() else 'grid'
-        Q = qpc.aggregate(float(self.q_tf.GetValue()), mode,
-                          self.parent.gauge_popup,
-                          ['Quantizing.. (1/2)', 'Aggregating.. (2/2)'])
-        self.status_bar.SetStatusText('Aggregation: %d -> %d points' %
+        Q = qpc.downsample(float(self.q_tf.GetValue()), mode,
+                           self.parent.gauge_popup,
+                           ['Quantizing.. (1/2)', 'Downsampling.. (2/2)'])
+        self.status_bar.SetStatusText('Downsampling: %d -> %d points' %
                             (len(self.scene.get_active_point_cloud().P), len(Q)))
         self.scene.get_active_point_cloud().set_visible(self.diff_cb.GetValue())
         # aggreg is a temp name
         self.scene.add_point_cloud(Q, 'aggreg', 'limegreen', set_active=False)
         self.parent.gauge_popup.Hide()
-        wx.EndBusyCursor()
+        if sys.platform == 'win32':
+            self.SetCursor(wx.StockCursor(wx.CURSOR_ARROW))
+        else:
+            wx.EndBusyCursor()
         self.done_btn.Enable()
 
     def on_cancel(self, e):
@@ -111,6 +119,7 @@ class PointCloudAggregationDialog(wx.Dialog):
         self.scene.set_active_point_cloud(new_pc_name)
         self.Hide()
 
+        
 class PointCloudVoxelizationDialog(wx.Dialog):
 
     def __init__(self, parent):
@@ -156,8 +165,11 @@ class PointCloudVoxelizationDialog(wx.Dialog):
         if not self.scene.get_active_point_cloud():
             self.status_bar.SetStatusText('A point cloud is required for this!')
             return
-        wx.BeginBusyCursor()
-        wx.SafeYield()
+        if sys.platform == 'win32':
+            self.SetCursor(wx.StockCursor(wx.CURSOR_WAIT))
+        else:
+            wx.BeginBusyCursor()
+        wx.Yield()
         V = QuantizedPointCloud(self.scene.get_active_point_cloud().P)
         self.status_bar.SetStatusText('Voxelizing point cloud..')
         V.quantize(float(self.q_tf.GetValue()))
@@ -170,7 +182,10 @@ class PointCloudVoxelizationDialog(wx.Dialog):
         self.scene.add_voxel_model(V, 'default',
                                  0.5 if show_pc else 1, 'limegreen')
         self.scene.set_point_cloud_visibility('default', show_pc)
-        wx.EndBusyCursor()
+        if sys.platform == 'win32':
+            self.SetCursor(wx.StockCursor(wx.CURSOR_ARROW))
+        else:
+            wx.EndBusyCursor()
         self.done_btn.Enable()
 
     def on_cancel(self, e):
@@ -187,6 +202,7 @@ class PointCloudVoxelizationDialog(wx.Dialog):
         self.scene.frame.ren_win.Render()
         self.Hide()
 
+        
 class PointCloudGeoClippingDialog(wx.Dialog):
 
     def __init__(self, parent):
@@ -251,8 +267,11 @@ class PointCloudGeoClippingDialog(wx.Dialog):
         if not self.scene.get_active_point_cloud():
             self.status_bar.SetStatusText('A point cloud is required for this!')
             return
-        wx.BeginBusyCursor()
-        wx.SafeYield()
+        if sys.platform == 'win32':
+            self.SetCursor(wx.StockCursor(wx.CURSOR_WAIT))
+        else:
+            wx.BeginBusyCursor()
+        wx.Yield()
         k = int(self.k_tf.GetValue())
         r = float(self.r_tf.GetValue())
         d = float(self.d_tf.GetValue())
@@ -265,9 +284,12 @@ class PointCloudGeoClippingDialog(wx.Dialog):
         P = self.gc.clip(d)
         self.scene.add_point_cloud(P, 'geo_clipping', 'green', False)
         self.scene.get_active_point_cloud().set_visible(self.diff_cb.GetValue())
-        wx.EndBusyCursor()
         self.status_bar.SetStatusText('Geodesic clipping: %d -> %d points' %
                             (len(self.scene.get_active_point_cloud().P), len(P)))
+        if sys.platform == 'win32':
+            self.SetCursor(wx.StockCursor(wx.CURSOR_ARROW))
+        else:
+            wx.EndBusyCursor()
         self.done_btn.Enable()
 
     def on_cancel(self, e):

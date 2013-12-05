@@ -1,5 +1,6 @@
 import wx
 
+
 class ModelOpacityDialog(wx.Dialog):
 
     def __init__(self, parent):
@@ -28,6 +29,7 @@ class ModelOpacityDialog(wx.Dialog):
         self.slider.SetValue(self.scene.get_active_polytube_model().\
                              actor.GetProperty().GetOpacity() * 100)
 
+                             
 class MeasurementMarkersDialog(wx.Dialog):
 
     def __init__(self, parent):

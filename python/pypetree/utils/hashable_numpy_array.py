@@ -1,6 +1,7 @@
 from hashlib import sha1
 from numpy import *
 
+
 # This is a Numpy array (i.e. a vector in the math sense) that can be used
 # with sets and dicts, because it is hashable; otherwise it behaves exactly
 # the same as a normal NP array, and can be used interchangeably (watch out
@@ -24,6 +25,7 @@ class HashableArray(ndarray):
 
    def __setitem__(self, key, value):
       raise Exception('HashableArray is read-only')
+
 
 def hround(h, n_decimals):
    return harray(round_(h, n_decimals))

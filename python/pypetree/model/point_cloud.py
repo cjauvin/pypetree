@@ -6,12 +6,15 @@ import networkx as nx
 from pypetree.utils.hashable_numpy_array import *
 from pypetree.utils import *
 
+
 def dist(p1, p2):
     return linalg.norm(p1 - p2)
+
 
 # find the dimension with the largest span
 def guess_point_cloud_height_dimension(P):
     return max([(max(P[:,dim]) - min(P[:,dim]), dim) for dim in [0,1,2]])[1]
+
 
 # see http://www.softsurfer.com/Archive/algorithm_0102/
 # algorithm_0102.htm#closest2D_Point_to_Line()
@@ -26,6 +29,7 @@ def closest_point_on_segment_from_point(p, p0, p1):
         return p1
     b = c1 / c2
     return p0 + b * v
+
 
 class GeodesicClipping:
 
@@ -63,6 +67,7 @@ class GeodesicClipping:
                     break
         return vstack(P)
 
+    
 class QuantizedPointCloud():
 
     def __init__(self, P):
@@ -104,8 +109,8 @@ class QuantizedPointCloud():
         for q in self.bins:
             yield q
 
-    def aggregate(self, bin_size, mode='bin_centroids',
-                  gauge_popup=None, gauge_msgs=None):
+    def downsample(self, bin_size, mode='bin_centroids',
+                   gauge_popup=None, gauge_msgs=None):
         assert mode in ['bin_centroids', 'grid']
         gauge_popup.SetTitle(gauge_msgs[0])
         self.quantize(bin_size, gauge_popup.gauge)

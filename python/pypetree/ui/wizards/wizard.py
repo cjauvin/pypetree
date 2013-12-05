@@ -1,5 +1,6 @@
 import wx, traceback
 
+
 class WizardNavPanel(wx.Panel):
 
     def __init__(self, wiz, back_btn_enabled=True):
@@ -22,6 +23,7 @@ class WizardNavPanel(wx.Panel):
         self.Bind(wx.EVT_BUTTON, self.wiz.on_cancel, self.cancel_btn)
         self.SetSizerAndFit(btn_sizer)
 
+        
 class Wizard(wx.Dialog):
 
     def __init__(self, parent, title, n_steps, back_btn_enabled=True):
@@ -58,7 +60,10 @@ class Wizard(wx.Dialog):
         try:
             self.curr_page.on_run(e)
         except:
-            wx.EndBusyCursor()
+            if sys.platform == 'win32':
+                self.SetCursor(wx.StockCursor(wx.CURSOR_ARROW))
+            else:
+                wx.EndBusyCursor()
             dlg = wx.MessageDialog(self, traceback.format_exc(),
                                    "Error", wx.ICON_ERROR)
             dlg.ShowModal()
@@ -86,6 +91,7 @@ class Wizard(wx.Dialog):
         self.curr_page.Hide()
         self.Hide()
 
+        
 class WizardPage(wx.Panel):
 
     def __init__(self, wiz, title):

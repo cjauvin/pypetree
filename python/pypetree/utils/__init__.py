@@ -3,6 +3,7 @@ import progressbar as pb
 from webcolors import *
 from numpy import *
 
+
 def pbar(it, maxval=None, gauge=None):
     if gauge is None:
         if maxval is not None:
@@ -10,11 +11,10 @@ def pbar(it, maxval=None, gauge=None):
         else:
             return pb.ProgressBar(term_width=40)(it)
     else:
-
         g_range = maxval if maxval else len(it)
         gauge.SetRange(g_range)
-
-        class pbar_gauge_iter:
+        
+        class PbarGaugeIter:
 
             def __init__(self):
                 self.inc = int(g_range * 5 / 100.0)
@@ -30,7 +30,8 @@ def pbar(it, maxval=None, gauge=None):
                 self.i += 1
                 return it.next()
 
-        return pbar_gauge_iter()
+        return PbarGaugeIter()
+
 
 def name_to_rgb_float(name):
     return array(name_to_rgb(name)) / 255

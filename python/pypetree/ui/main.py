@@ -7,11 +7,13 @@ from pypetree.model.lsystem.lsystem import *
 from pypetree.ui.point_cloud import *
 from pypetree.ui.model import *
 
+
 APP_NAME = 'PypeTree'
 APP_VERSION = 'prototype'
 MAIN_WIN_SIZE = (600, 600) # (400, 400)
 MAIN_WIN_BG_COLOR = 'white'#'DarkSlateGray' #'black'
 START_WITH_AXES = False #True
+
 
 class GaugePopup(wx.Dialog):
 
@@ -40,6 +42,7 @@ class GaugePopup(wx.Dialog):
     def stop_pulse(self):
         self.timer.Stop()
         self.Hide()
+
 
 class MainWindow(wx.Frame):
 
@@ -422,6 +425,7 @@ left double-click: add an articulation sphere (roaming or attached to model), or
         dlg = wx.MessageDialog(self, s, 'Mouse Navigation', wx.OK)
         dlg.ShowModal()
         dlg.Destroy()
+
 
 class SceneInterface:
 
