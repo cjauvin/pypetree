@@ -36,7 +36,7 @@ class GeodesicClipping:
     def __init__(self, P):
         self.P = P
 
-    def nearest_neighbors(self, k, r):
+    def nearest_neighbors(self, k, r, ydim):
         kdtree = cKDTree(self.P)
         dists, result = kdtree.query(self.P, k=k+1, distance_upper_bound=r)
         g = nx.Graph()
@@ -47,7 +47,7 @@ class GeodesicClipping:
         conn_graphs = nx.connected_component_subgraphs(g)
         self.N = sorted([(len(g.nodes()), g) for g in conn_graphs],
                         reverse=True)[0][1]
-        self.source = self.N.nodes()[argmin(self.P[self.N.nodes(), 2])]
+        self.source = self.N.nodes()[argmin(self.P[self.N.nodes(), ydim])]
 
     def clip(self, d):
         self.G = nx.single_source_dijkstra_path(self.N, self.source)

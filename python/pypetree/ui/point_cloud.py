@@ -23,7 +23,7 @@ class PointCloudOpacityDialog(wx.Dialog):
         sizer.Add(self.slider, 0, wx.ALIGN_CENTER_VERTICAL, 10)
         self.SetSizerAndFit(sizer)
 
-        
+
 class PointCloudDownsamplingDialog(wx.Dialog):
 
     def __init__(self, parent):
@@ -119,7 +119,7 @@ class PointCloudDownsamplingDialog(wx.Dialog):
         self.scene.set_active_point_cloud(new_pc_name)
         self.Hide()
 
-        
+
 class PointCloudVoxelizationDialog(wx.Dialog):
 
     def __init__(self, parent):
@@ -202,7 +202,7 @@ class PointCloudVoxelizationDialog(wx.Dialog):
         self.scene.frame.ren_win.Render()
         self.Hide()
 
-        
+
 class PointCloudGeoClippingDialog(wx.Dialog):
 
     def __init__(self, parent):
@@ -213,22 +213,29 @@ class PointCloudGeoClippingDialog(wx.Dialog):
         self.scene = self.parent.scene
         self.status_bar = self.parent.status_bar
 
+        ydim_lbl = wx.StaticText(self, wx.ID_ANY, 'Upward dimension [0,1,2]:',
+                                 size=(250,-1))
+        self.ydim_tf = wx.TextCtrl(self, wx.ID_ANY, '2')
+        ydim_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        ydim_sizer.Add(ydim_lbl, 0, wx.ALIGN_CENTER_VERTICAL, 10)
+        ydim_sizer.Add(self.ydim_tf, 0, wx.ALIGN_CENTER_VERTICAL, 10)
+
         k_lbl = wx.StaticText(self, wx.ID_ANY,
-                              'Number of nearest neighbors:', size=(250,-1))
+                              'Number of nearest neighbors (k):', size=(250,-1))
         self.k_tf = wx.TextCtrl(self, wx.ID_ANY, '10')
         k_sizer = wx.BoxSizer(wx.HORIZONTAL)
         k_sizer.Add(k_lbl, 0, wx.ALIGN_CENTER_VERTICAL, 10)
         k_sizer.Add(self.k_tf, 0, wx.ALIGN_CENTER_VERTICAL, 10)
 
         r_lbl = wx.StaticText(self, wx.ID_ANY,
-                              'Max nearest neighbors dist:', size=(250,-1))
+                              'Max nearest neighbors dist (r):', size=(250,-1))
         self.r_tf = wx.TextCtrl(self, wx.ID_ANY, 'inf')
         r_sizer = wx.BoxSizer(wx.HORIZONTAL)
         r_sizer.Add(r_lbl, 0, wx.ALIGN_CENTER_VERTICAL, 10)
         r_sizer.Add(self.r_tf, 0, wx.ALIGN_CENTER_VERTICAL, 10)
 
         d_lbl = wx.StaticText(self, wx.ID_ANY,
-                              'Clipping distance:', size=(250,-1))
+                              'Clipping distance (d):', size=(250,-1))
         self.d_tf = wx.TextCtrl(self, wx.ID_ANY, '1')
         d_sizer = wx.BoxSizer(wx.HORIZONTAL)
         d_sizer.Add(d_lbl, 0, wx.ALIGN_CENTER_VERTICAL, 10)
@@ -253,6 +260,7 @@ class PointCloudGeoClippingDialog(wx.Dialog):
         btn_sizer.Add(self.done_btn, 0, wx.ALL|wx.EXPAND, 10)
 
         top_sizer = wx.BoxSizer(wx.VERTICAL)
+        top_sizer.Add(ydim_sizer, 0, wx.ALL|wx.EXPAND, 10)
         top_sizer.Add(k_sizer, 0, wx.ALL|wx.EXPAND, 10)
         top_sizer.Add(r_sizer, 0, wx.ALL|wx.EXPAND, 10)
         top_sizer.Add(d_sizer, 0, wx.ALL|wx.EXPAND, 10)
@@ -261,7 +269,7 @@ class PointCloudGeoClippingDialog(wx.Dialog):
 
         self.SetSizerAndFit(top_sizer)
 
-        self.last_gcN_params = (None, None)
+        self.last_gcN_params = (None, None, None) # k, r, ydim
 
     def on_run(self, e):
         if not self.scene.get_active_point_cloud():
@@ -275,11 +283,12 @@ class PointCloudGeoClippingDialog(wx.Dialog):
         k = int(self.k_tf.GetValue())
         r = float(self.r_tf.GetValue())
         d = float(self.d_tf.GetValue())
-        if self.last_gcN_params != (k, r):
+        ydim = int(self.ydim_tf.GetValue())
+        if self.last_gcN_params != (k, r, ydim):
             self.status_bar.SetStatusText('Computing nearest neighbors..')
             self.gc = GeodesicClipping(self.scene.get_active_point_cloud().P)
-            self.gc.nearest_neighbors(k, r)
-            self.last_gcN_params = (k, r)
+            self.gc.nearest_neighbors(k, r, ydim)
+            self.last_gcN_params = (k, r, ydim)
         self.status_bar.SetStatusText('Geodesic clipping..')
         P = self.gc.clip(d)
         self.scene.add_point_cloud(P, 'geo_clipping', 'green', False)

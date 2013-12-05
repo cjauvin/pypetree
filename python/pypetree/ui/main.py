@@ -115,8 +115,8 @@ class MainWindow(wx.Frame):
         pc_menu = wx.Menu()
         clear_pc_menuitem = pc_menu.Append(wx.ID_ANY,
                                            "&Clear"," Clear point cloud")
-        pc_aggreg_menuitem = pc_menu.Append(wx.ID_ANY,
-                                        'Aggregate', 'Point cloud aggregation')
+        pc_downsample_menuitem = pc_menu.Append(wx.ID_ANY,
+                                    'Downsampling', 'Point cloud downsampling')
         #pc_voxel_menuitem = pc_menu.Append(wx.ID_ANY,
         #                      'Voxelize', 'Point cloud voxelization')
         geoclipping_menuitem = pc_menu.Append(wx.ID_ANY,
@@ -201,8 +201,8 @@ class MainWindow(wx.Frame):
             if self.scene.get_active_point_cloud(): dlg.Show()
             else: self.SetStatusText('A model is required for this!')
         self.Bind(wx.EVT_MENU, lambda e:
-                  show_dialog(self.point_cloud_aggregation_dialog),
-                  pc_aggreg_menuitem)
+                  show_dialog(self.point_cloud_downsampling_dialog),
+                  pc_downsample_menuitem)
         #self.Bind(wx.EVT_MENU, lambda e:
         #       self.point_cloud_voxelization_dialog.Show(), pc_voxel_menuitem)
         self.Bind(wx.EVT_MENU, lambda e:
@@ -237,7 +237,7 @@ class MainWindow(wx.Frame):
         self.mvl_wiz.add_page(MVLSmoothingWizardPage(self.mvl_wiz))
 
         self.point_cloud_opacity_dialog = PointCloudOpacityDialog(self)
-        self.point_cloud_aggregation_dialog = PointCloudAggregationDialog(self)
+        self.point_cloud_downsampling_dialog = PointCloudDownsamplingDialog(self)
         self.point_cloud_voxelization_dialog = PointCloudVoxelizationDialog(self)
         self.point_cloud_geoclipping_dialog = PointCloudGeoClippingDialog(self)
 
