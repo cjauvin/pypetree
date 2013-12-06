@@ -41,7 +41,7 @@ class MeasurementMarkersDialog(wx.Dialog):
         self.status_bar = self.parent.status_bar
 
         n_lbl = wx.StaticText(self, wx.ID_ANY,
-            'Number of markers (including the two user-defined, green ones):',
+            'Number of markers (including the two user-defined\n ones, in green):',
             size=(250,-1))
         self.n_tf = wx.TextCtrl(self, wx.ID_ANY, '5')
         n_sizer = wx.BoxSizer(wx.HORIZONTAL)
