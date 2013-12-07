@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -15,7 +13,7 @@
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
+        URL_ROOT:    './',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
@@ -53,7 +51,49 @@
             
   <div class="section" id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<p>Soon to come..</p>
+<p>PypeTree relies on a few packages: the Python bindings for the <a class="reference external" href="http://vtk.org/">VTK</a> 3D
+visualization library, the <a class="reference external" href="http://www.numpy.org/">Numpy</a>, <a class="reference external" href="http://www.scipy.org/scipylib/index.html">SciPy</a> and <a class="reference external" href="http://networkx.github.io/">NetworkX</a> packages for scientific
+computations, <a class="reference external" href="http://www.wxpython.org/">wxPython</a> (UI) and some others.</p>
+<div class="section" id="windows">
+<h2>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h2>
+<p>PypeTree is very easy to install on Windows thanks to the <a class="reference external" href="https://code.google.com/p/pythonxy/">Python(x, y)</a>
+distribution, which comprises all the necessary packages at once. If you choose
+the &#8220;custom&#8221; install, make sure they are all selected. Also install these two
+additional modules from the PyPI repository, with either <tt class="docutils literal"><span class="pre">pip</span></tt> or
+<tt class="docutils literal"><span class="pre">easy_install</span></tt>:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip install webcolors progressbar
+</pre></div>
+</div>
+</div>
+<div class="section" id="linux">
+<h2>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h2>
+<p>On a Ubuntu system it&#8217;s not much harder:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>apt-get install python-vtk python-numpy python-scipy python-wxgtk2.8 python-networkx
+</pre></div>
+</div>
+<p>and</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip install webcolors progressbar
+</pre></div>
+</div>
+</div>
+<div class="section" id="osx">
+<h2>OSX<a class="headerlink" href="#osx" title="Permalink to this headline">¶</a></h2>
+<p>PypeTree also runs fine on my own Mac laptop, but as I&#8217;m pretty sure that the
+process has been updated (and smoothened a bit) since I performed it some time
+ago, I won&#8217;t try to state a particular procedure. The easiest way it can be done
+is certainly using the <a class="reference external" href="http://brew.sh/">Homebrew</a> package manager, with which all the required
+packages can be installed. If someone is interested in trying it, drop me a
+line, and I&#8217;ll update this document with the procedure, and will also provide
+help if needed.</p>
+</div>
+<div class="section" id="to-run">
+<h2>To Run<a class="headerlink" href="#to-run" title="Permalink to this headline">¶</a></h2>
+<p>Once installed, you can run the program by simply doing</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>pypetree/python
+<span class="nv">$ </span>python run.py
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -62,6 +102,17 @@
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Installation</a><ul>
+<li><a class="reference internal" href="#windows">Windows</a></li>
+<li><a class="reference internal" href="#linux">Linux</a></li>
+<li><a class="reference internal" href="#osx">OSX</a></li>
+<li><a class="reference internal" href="#to-run">To Run</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="index.html"
                         title="previous chapter">Welcome to PypeTree&#8217;s documentation!</a></p>
@@ -107,7 +158,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2012, Christian Jauvin.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
     </div>
   </body>
 </html>

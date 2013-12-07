@@ -1,4 +1,65 @@
 Installation
 ============
 
-Soon to come.. 
+PypeTree relies on a few packages: the Python bindings for the VTK_ 3D
+visualization library, the Numpy_, SciPy_ and NetworkX_ packages for scientific
+computations, wxPython_ (UI) and some others.
+
+.. _VTK: http://vtk.org/
+.. _Numpy: http://www.numpy.org/
+.. _SciPy: http://www.scipy.org/scipylib/index.html
+.. _NetworkX: http://networkx.github.io/
+.. _wxPython: http://www.wxpython.org/
+
+Windows
+-------
+
+PypeTree is very easy to install on Windows thanks to the `Python(x, y)`_
+distribution, which comprises all the necessary packages at once. If you choose
+the "custom" install, make sure they are all selected. Also install these two
+additional modules from the PyPI repository, with either ``pip`` or
+``easy_install``:
+
+.. code-block:: bash
+
+    $ pip install webcolors progressbar
+
+.. _Python(x, y): https://code.google.com/p/pythonxy/
+
+Linux
+-----
+
+On a Ubuntu system it's not much harder:
+
+.. code-block:: bash
+
+    $ apt-get install python-vtk python-numpy python-scipy python-wxgtk2.8 python-networkx
+
+and
+
+.. code-block:: bash
+
+    $ pip install webcolors progressbar
+
+OSX
+---
+
+PypeTree also runs fine on my own Mac laptop, but as I'm pretty sure that the
+process has been updated (and smoothened a bit) since I performed it some time
+ago, I won't try to state a particular procedure. The easiest way it can be done
+is certainly using the `Homebrew`_ package manager, with which all the required
+packages can be installed. If someone is interested in trying it, drop me a
+line, and I'll update this document with the procedure, and will also provide
+help if needed.
+
+.. _Homebrew: http://brew.sh/
+
+To Run
+------
+
+Once installed, you can run the program by simply doing
+
+.. code-block:: bash
+
+    $ cd pypetree/python
+    $ python run.py

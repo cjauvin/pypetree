@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -15,7 +13,7 @@
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
+        URL_ROOT:    './',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
@@ -63,7 +61,7 @@ Jauvin</a>, <a class="reference external" href="http://services.uqo.ca/DosEtuCor
 <div class="section" id="features">
 <h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Connectivity/geodesic-based reconstruction algorithm</li>
+<li>Connectivity/geodesic-based reconstruction algorithm (based on <a class="reference external" href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.36.1846">Verroust &amp; Lazarus</a>)</li>
 </ul>
 <img alt="_images/pp_features_recon.png" src="_images/pp_features_recon.png" />
 <ul class="simple">
@@ -73,18 +71,21 @@ Jauvin</a>, <a class="reference external" href="http://services.uqo.ca/DosEtuCor
 <ul class="simple">
 <li>Point cloud manipulation tools (here is an example of <em>geodesic
 clipping</em> of a point cloud, where the branches of its underlying
-tree model are cut above a threshold distance in its geodesic space)</li>
+tree model are cut above a threshold distance in the geodesic space)</li>
 </ul>
 <img alt="_images/pp_features_geoclip.png" src="_images/pp_features_geoclip.png" />
-<ul class="simple">
-<li>And many more!</li>
-</ul>
 </div>
 <div class="section" id="contents">
 <h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install.html#windows">Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#linux">Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#osx">OSX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#to-run">To Run</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="quick.html">Quick Tutorial</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="quick.html#navigation">Navigation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quick.html#point-clouds">Point Clouds</a></li>
@@ -161,7 +162,7 @@ tree model are cut above a threshold distance in its geodesic space)</li>
     </div>
     <div class="footer">
         &copy; Copyright 2012, Christian Jauvin.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
     </div>
   </body>
 </html>

@@ -30,7 +30,9 @@ Jauvin`_, `Sylvain Delagrange`_ and `Pascal Rochon`_.
 Features
 --------
 
-* Connectivity/geodesic-based reconstruction algorithm
+* Connectivity/geodesic-based reconstruction algorithm (based on `Verroust & Lazarus`_)
+
+.. _Verroust & Lazarus: http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.36.1846
 
 .. image:: images/pp_features_recon.png
 
@@ -42,11 +44,9 @@ Features
 
 * Point cloud manipulation tools (here is an example of *geodesic
   clipping* of a point cloud, where the branches of its underlying
-  tree model are cut above a threshold distance in its geodesic space)
+  tree model are cut above a threshold distance in the geodesic space)
 
 .. image:: images/pp_features_geoclip.png
-
-* And many more!
 
 Contents
 --------
