@@ -11,8 +11,17 @@ user can intervene by manipulating the model primitives to perform
 some adjustments (to create, delete, resize or move a branch, for
 instance).
 
+The development of PypeTree was funded by a FQRNT_ and NSERC_ grant
+obtained by `Sylvain Delagrange`_. It was created by `Christian
+Jauvin`_, `Sylvain Delagrange`_ and `Pascal Rochon`_.
+
 .. _Python: http://www.python.org
 .. _VTK: http://www.vtk.org
+.. _FQRNT: http://www.fqrnt.gouv.qc.ca
+.. _NSERC: http://www.nserc-crsng.gc.ca/
+.. _Christian Jauvin: http://christianjauv.in
+.. _Sylvain Delagrange: http://services.uqo.ca/DosEtuCorpsProf/PageProfesseur.aspx?id=sylvain.delagrange
+.. _Pascal Rochon: http://www.cef-cfr.ca/index.php?n=Membres.PascalRochon
 
 Features
 --------
@@ -33,4 +42,4 @@ Features
 
 .. image:: https://raw.github.com/cjauvin/pypetree/gh-pages/_images/pp_features_geoclip.png
 
-* And many more!
+* And much more!
