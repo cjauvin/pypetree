@@ -41,7 +41,7 @@ A point cloud is a set of 3d points:
 
 * If an articulation sphere is highlighting some of its points
   (``View->Point Cloud->Shere Selection``), pressing ``D`` while the
-  sphere is selected will delete them, thus pruning the point cloud. 
+  sphere is selected will delete them, thus pruning the point cloud.
 
 * At any time, the current point cloud can be saved with ``File->Save
   Point Cloud``.
@@ -82,16 +82,16 @@ you can:
 
 * Delete it, by pressing ``d`` (this won't affect the model anyhow)
 
-* Cut the branch above it, by pressing ``x``:
+* Cut the branch segment above it, by pressing ``x``:
 
-.. image:: images/quick/cut_x_before.png
-.. image:: images/quick/cut_x_after.png
+.. image:: images/quick/cut_smallx_before.png
+.. image:: images/quick/cut_smallx_after.png
 
 * Cut the whole branch to which it belongs, down to the nearest
   branching point, by pressing ``X``:
 
-.. image:: images/quick/cut_X_before.png
-.. image:: images/quick/cut_X_after.png
+.. image:: images/quick/cut_bigx_before.png
+.. image:: images/quick/cut_bigx_after.png
 
 Finally, when a point cloud is present, it's possible to double-click
 on it to create a "roaming" sphere (i.e. not attached to any
