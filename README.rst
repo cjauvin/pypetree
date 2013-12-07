@@ -43,3 +43,10 @@ Features
 .. image:: https://raw.github.com/cjauvin/pypetree/gh-pages/_images/pp_features_geoclip.png
 
 * And much more!
+
+Documentation
+-------------
+
+Please consult the documentation_ for an overview of how it works and how to install it.
+
+.. _documentation: http://cjauvin.github.io/pypetree/
