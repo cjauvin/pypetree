@@ -19,6 +19,9 @@ The development of PypeTree was funded by a FQRNT_ and NSERC_ grant
 obtained by `Sylvain Delagrange`_. It was created by `Christian
 Jauvin`_, `Sylvain Delagrange`_ and `Pascal Rochon`_.
 
+An article_ describing PypeTree and its development process has been published
+in the Sensors_ journal.
+
 .. _Python: http://www.python.org
 .. _VTK: http://www.vtk.org
 .. _FQRNT: http://www.fqrnt.gouv.qc.ca
@@ -26,6 +29,8 @@ Jauvin`_, `Sylvain Delagrange`_ and `Pascal Rochon`_.
 .. _Christian Jauvin: http://christianjauv.in
 .. _Sylvain Delagrange: http://services.uqo.ca/DosEtuCorpsProf/PageProfesseur.aspx?id=sylvain.delagrange
 .. _Pascal Rochon: http://www.cef-cfr.ca/index.php?n=Membres.PascalRochon
+.. _article: http://dx.doi.org/10.3390/s140304271
+.. _Sensors: http://www.mdpi.com/journal/sensors
 
 Features
 --------
