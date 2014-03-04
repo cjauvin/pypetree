@@ -11,6 +11,16 @@ computations, wxPython_ (UI) and some others.
 .. _NetworkX: http://networkx.github.io/
 .. _wxPython: http://www.wxpython.org/
 
+The first step, if you use ``git``, is to clone the source code repository:
+
+.. code-block:: bash
+
+    $ git clone https://github.com/cjauvin/pypetree.git
+
+or alternatively, you can download_ the latest snapshot.
+
+.. _download: https://github.com/cjauvin/pypetree/archive/master.zip
+
 Windows
 -------
 
