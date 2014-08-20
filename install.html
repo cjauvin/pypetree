@@ -83,13 +83,18 @@ additional modules from the PyPI repository, with either <tt class="docutils lit
 </div>
 <div class="section" id="osx">
 <h2>OSX<a class="headerlink" href="#osx" title="Permalink to this headline">¶</a></h2>
-<p>PypeTree also runs fine on my own Mac laptop, but as I&#8217;m pretty sure that the
-process has been updated (and smoothened a bit) since I performed it some time
-ago, I won&#8217;t try to state a particular procedure. The easiest way it can be done
-is certainly using the <a class="reference external" href="http://brew.sh/">Homebrew</a> package manager, with which all the required
-packages can be installed. If someone is interested in trying it, drop me a
-line, and I&#8217;ll update this document with the procedure, and will also provide
-help if needed.</p>
+<p>On OSX first do:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip install webcolors progressbar
+</pre></div>
+</div>
+<p>Then, using the <a class="reference external" href="http://brew.sh/">Homebrew</a> package manager:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>brew install wxpython
+<span class="nv">$ </span>brew install vtk --with-qt --with-python --with-pyqt
+</pre></div>
+</div>
+<p>Be warned that the second command (to compile and install VTK) takes a
+while. Also, it&#8217;s possible that you might previously have to install Python
+(with brew) before doing these commands (I&#8217;m not actually sure).</p>
 </div>
 <div class="section" id="to-run">
 <h2>To Run<a class="headerlink" href="#to-run" title="Permalink to this headline">¶</a></h2>

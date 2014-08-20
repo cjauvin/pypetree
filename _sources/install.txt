@@ -54,13 +54,22 @@ and
 OSX
 ---
 
-PypeTree also runs fine on my own Mac laptop, but as I'm pretty sure that the
-process has been updated (and smoothened a bit) since I performed it some time
-ago, I won't try to state a particular procedure. The easiest way it can be done
-is certainly using the `Homebrew`_ package manager, with which all the required
-packages can be installed. If someone is interested in trying it, drop me a
-line, and I'll update this document with the procedure, and will also provide
-help if needed.
+On OSX first do:
+
+.. code-block:: bash
+
+    $ pip install webcolors progressbar
+
+Then, using the `Homebrew`_ package manager:
+
+.. code-block:: bash
+
+    $ brew install wxpython
+    $ brew install vtk --with-qt --with-python --with-pyqt
+
+Be warned that the second command (to compile and install VTK) takes a
+while. Also, it's possible that you might previously have to install Python
+(with brew) before doing these commands (I'm not actually sure).
 
 .. _Homebrew: http://brew.sh/
 
