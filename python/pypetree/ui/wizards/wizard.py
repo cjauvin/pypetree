@@ -1,4 +1,4 @@
-import wx, traceback
+import sys, wx, traceback
 
 
 class WizardNavPanel(wx.Panel):

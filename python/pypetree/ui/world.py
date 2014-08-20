@@ -9,6 +9,8 @@ from pypetree.model.tree_model import *
 INIT_SPHERE_RADIUS = 0.05
 ART_SPHERE_SIZE_RATIO = 1.25
 
+# warning this is rather brittle, and only meant to be temporary
+USING_VTK6 = ' 6.' in vtk.vtkVersion.GetVTKSourceVersion()
 
 # container for both the point cloud and the model
 class Scene:
@@ -305,7 +307,7 @@ class Scene:
         # else:
         #     raise Exception('unknown file type (%s)' % ext)
 
-        
+
 class PointCloud:
 
     def __init__(self, P, frame, name, base_color='red',
@@ -335,7 +337,10 @@ class PointCloud:
         self.polydata.SetVerts(cells)
         self.polydata.GetPointData().SetScalars(self.colors)
         self.mapper = vtk.vtkPolyDataMapper()
-        self.mapper.SetInput(self.polydata)
+        if USING_VTK6:
+            self.mapper.SetInputData(self.polydata)
+        else:
+            self.mapper.SetInput(self.polydata)
         self.actor = vtk.vtkActor()
         self.actor.SetMapper(self.mapper)
         self.actor.SetPickable(False) # not sure if this is needed
@@ -361,7 +366,7 @@ class PointCloud:
         self.actor.SetVisibility(b)
         self.frame.ren_win.Render()
 
-        
+
 class ArticulationSphere:
 
     last_radius_update = INIT_SPHERE_RADIUS
@@ -376,7 +381,10 @@ class ArticulationSphere:
         self.src.SetCenter(pos)
         self.src.SetRadius(radius)
         self.mapper = vtk.vtkPolyDataMapper()
-        self.mapper.SetInput(self.src.GetOutput())
+        if USING_VTK6:
+            self.mapper.SetInputConnection(self.src.GetOutputPort())
+        else:
+            self.mapper.SetInput(self.src.GetOutput())
         self.actor = vtk.vtkActor()
         self.actor.SetMapper(self.mapper)
         self.color = color # base color name
@@ -418,8 +426,12 @@ class ArticulationSphere:
         transform_filter.SetInputConnection(self.src.GetOutputPort())
         transform_filter.SetTransform(transform)
         enclosed_pts = vtk.vtkSelectEnclosedPoints()
-        enclosed_pts.SetInput(self.scene.get_active_point_cloud().polydata)
-        enclosed_pts.SetSurface(transform_filter.GetOutput())
+        if USING_VTK6:
+            enclosed_pts.SetInputData(self.scene.get_active_point_cloud().polydata)
+            enclosed_pts.SetSurfaceConnection(transform_filter.GetOutputPort())
+        else:
+            enclosed_pts.SetInput(self.scene.get_active_point_cloud().polydata)
+            enclosed_pts.SetSurface(transform_filter.GetOutput())
         enclosed_pts.Update()
         inside_arr = enclosed_pts.GetOutput().GetPointData().\
           GetArray('SelectedPoints')
@@ -533,7 +545,7 @@ class ArticulationSphere:
     #     self.update()
     #     self.frame.ren_win.Render()
 
-    
+
 class PolytubeModel:
 
     # additional_sphere_callbacks: list of (callback_name, callback)'s
@@ -586,14 +598,23 @@ class PolytubeModel:
         self.polydata.GetPointData().SetActiveScalars('radii')
         self.tubes = vtk.vtkTubeFilter()
         self.tubes.SetNumberOfSides(10)
-        self.tubes.SetInput(self.polydata)
+        if USING_VTK6:
+            self.tubes.SetInputData(self.polydata)
+        else:
+            self.tubes.SetInput(self.polydata)
         self.tubes.SetVaryRadiusToVaryRadiusByAbsoluteScalar()
         self.tubes.CappingOn()
         self.mapper = vtk.vtkPolyDataMapper()
         if self.show_volume:
-            self.mapper.SetInput(self.tubes.GetOutput())
+            if USING_VTK6:
+                self.mapper.SetInputConnection(self.tubes.GetOutputPort())
+            else:
+                self.mapper.SetInput(self.tubes.GetOutput())
         else:
-            self.mapper.SetInput(self.polydata)
+            if USING_VTK6:
+                self.mapper.SetInputData(self.polydata)
+            else:
+                self.mapper.SetInput(self.polydata)
         self.mapper.ScalarVisibilityOn()
         self.mapper.SetScalarModeToUsePointFieldData()
         self.mapper.SelectColorArray('colors')
@@ -775,7 +796,7 @@ class PolytubeModel:
         del self.mm_user_spheres
         del self.mm_spheres
 
-        
+
 class VoxelModel:
 
     # def __init__(self, scene, V, opacity=1, color='gray'):
